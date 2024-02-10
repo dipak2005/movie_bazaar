@@ -32,6 +32,11 @@ class _HomeState extends State<Home> {
     // MovieProvider mp = Provider.of<MovieProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "Movie Box",
+          style: TextStyle(
+              color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -83,7 +88,7 @@ class _HomeState extends State<Home> {
                                                   BorderRadius.circular(20),
                                               borderSide: BorderSide(
                                                   color: Colors.black12)),
-                                          hintText: "Search Movies",
+                                          hintText: "Search Movies or Title",
                                           enabled: true,
                                           focusColor: Colors.blue,
                                           focusedBorder: OutlineInputBorder(
@@ -101,17 +106,29 @@ class _HomeState extends State<Home> {
                                           )),
                                     ),
                                   )
-                                : Align(
-                                    alignment: Alignment(0.96, 0),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        value.show();
-                                      },
-                                      icon: Icon(
-                                        CupertinoIcons.search,
-                                        color: Colors.black,
+                                : Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      TextButton(
+                                          onPressed: () {
+                                            value.show();
+                                          },
+                                          child: Text(
+                                            "Search Movie or Title",
+                                            style:
+                                                TextStyle(color: Colors.black,fontSize: 25),
+                                          )),
+                                      IconButton(
+                                        onPressed: () {
+                                          value.show();
+                                        },
+                                        icon: Icon(
+                                          CupertinoIcons.search,
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                             SizedBox(
                               height: MediaQuery.sizeOf(context).height / 30,
@@ -135,7 +152,7 @@ class _HomeState extends State<Home> {
                                               crossAxisCount: 2),
                                       itemCount: data?.search?.length,
                                       itemBuilder: (context, index) {
-                                        Search? sData = data?.search![index];
+                                        var sData = data?.search![index];
                                         var dat = sData?.poster;
                                         return InkWell(
                                           onTap: () {

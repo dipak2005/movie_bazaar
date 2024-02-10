@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:async';
 
@@ -21,6 +21,12 @@ class _SplashState extends State<Splash> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Image.asset("assets/box.png",
+            width: MediaQuery.sizeOf(context).width * 0.7,
+            height: MediaQuery.sizeOf(context).height * 0.6),
+      ),
+    );
   }
 }

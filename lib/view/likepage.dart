@@ -22,7 +22,7 @@ class _LikePageState extends State<LikePage> {
         return GridView.builder(
           clipBehavior: Clip.antiAlias,
           gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           itemCount: value.likeList.length,
           itemBuilder: (context, index) {
             String sData = value.likeList[index];

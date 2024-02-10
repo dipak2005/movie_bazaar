@@ -22,7 +22,9 @@ class _ViewMoreState extends State<ViewMore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Detail Page",style: TextStyle(color: Colors.black),),
+      ),
       body: FutureBuilder(
         future: MovieHelper().iSearch(widget.id!),
         builder: (context, snapshot) {

@@ -6,7 +6,7 @@ import '../model/search_model.dart';
 
 class MovieProvider extends ChangeNotifier {
   int index = 0;
-int? intVat;
+  int? intVat;
   bool isShow = false;
   List<String> likeList = preferences.getStringList("movie") ?? [];
 
@@ -16,21 +16,21 @@ int? intVat;
   }
 
   void likeIndex(int index) {
-     intVat = int.parse(likeList[index]);
+    intVat = int.parse(likeList[index]);
     intVat = index;
     notifyListeners();
   }
 
   void likeMovie(String? movie) async {
     likeList.add(movie ?? "");
-  final   SharedPreferences preferences = await SharedPreferences.getInstance();
+    final   SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setStringList("movie", likeList);
     notifyListeners();
   }
 
   void removeMovie(String? movie) async {
     likeList.remove(movie ?? "");
-   final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setStringList("movie", likeList);
     notifyListeners();
   }
