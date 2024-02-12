@@ -22,14 +22,30 @@ class _ViewMoreState extends State<ViewMore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black.withOpacity(0.7),
       appBar: AppBar(
-        title: Text("Detail Page",style: TextStyle(color: Colors.black),),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            )),
+        backgroundColor: Colors.transparent,
+        title: Text(
+          "Detail Page",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: FutureBuilder(
         future: MovieHelper().iSearch(widget.id!),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Text("${snapshot.error}");
+            return Text(
+              "${snapshot.error}",
+              style: TextStyle(color: Colors.white),
+            );
           } else if (snapshot.hasData) {
             IdModel? data = snapshot.data;
             return SingleChildScrollView(
@@ -57,17 +73,21 @@ class _ViewMoreState extends State<ViewMore> {
                     height: MediaQuery.sizeOf(context).height / 26,
                   ),
                   Divider(
-                    color: Colors.black,endIndent: 20,indent: 20,
+                    color: Colors.white,
+                    endIndent: 20,
+                    indent: 20,
                   ),
                   Text(
                     " Name : ${data?.title}",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.w700),
                   ),
                   Divider(
-                    color: Colors.black,endIndent: 20,indent: 20,
+                    color: Colors.white,
+                    endIndent: 20,
+                    indent: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -75,14 +95,14 @@ class _ViewMoreState extends State<ViewMore> {
                       Text(
                         " Releasing : ${data?.released}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
                         " Year : ${data?.year}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
                             fontSize: 20),
                       ),
@@ -92,16 +112,16 @@ class _ViewMoreState extends State<ViewMore> {
                     alignment: Alignment(-0.85, 0),
                     child: Text(" Duration : ${data?.runtime}",
                         style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
-                        )),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: Colors.white)),
                   ),
                   Align(
-                      alignment: Alignment(-0.53, 0),
+                      alignment: Alignment(-0.74, 0),
                       child: Text(
                         " Casting type : ${data?.genre}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w700),
                       )),
@@ -110,7 +130,7 @@ class _ViewMoreState extends State<ViewMore> {
                     child: Text(
                       " Type : ${data?.type}",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w700),
                     ),
@@ -118,29 +138,29 @@ class _ViewMoreState extends State<ViewMore> {
                   Align(
                     alignment: Alignment(-0.76, 0),
                     child: Text(
-                      "${data?.director}",
+                      " Direcoter : ${data?.director}",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
-                          color: Colors.black),
+                          color: Colors.white),
                     ),
                   ),
                   Align(
-                    alignment: Alignment(-0.7, 0),
+                    alignment: Alignment(-0.01, 0),
                     child: Text(
                       " Weiters : ${data?.writer}",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.w700,
                           fontSize: 20),
                     ),
                   ),
                   Align(
-                      alignment: Alignment(-0.7, 0),
+                      alignment: Alignment(-0.5, 0),
                       child: Text(
                         " Actors : ${data?.actors}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
                             fontSize: 20),
                       )),
@@ -149,7 +169,7 @@ class _ViewMoreState extends State<ViewMore> {
                     child: Text(
                       " Language : ${data?.language}",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w700),
                     ),
@@ -159,7 +179,7 @@ class _ViewMoreState extends State<ViewMore> {
                     child: Text(
                       " Country : ${data?.country}",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.w700,
                           fontSize: 20),
                     ),
@@ -169,16 +189,16 @@ class _ViewMoreState extends State<ViewMore> {
                       child: Text(
                         "Awards : ${data?.awards}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w700),
                       )),
                   Align(
-                      alignment: Alignment(-0.8, 0),
+                      alignment: Alignment(-0.1, 0),
                       child: Text(
                         " Description : ${data?.plot}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
                             fontSize: 20),
                       )),
@@ -195,9 +215,8 @@ class _ViewMoreState extends State<ViewMore> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       RatingBar.builder(
-                        initialRating:
-                            double.parse("  ${data?.imdbRating}"),
-                        minRating: 1,
+                        initialRating: double.parse("  ${data?.imdbRating}"),
+                        minRating: 1,unratedColor: Colors.white,
                         itemSize: 25,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
@@ -211,12 +230,15 @@ class _ViewMoreState extends State<ViewMore> {
                           print(rating);
                         },
                       ),
-                      Text(
-                        " Rating : ${data?.imdbRating}",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20),
+                      Align(
+                        alignment: Alignment(-0.82, 0),
+                        child: Text(
+                          " Rating : ${data?.imdbRating}",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20),
+                        ),
                       ),
                     ],
                   ),
@@ -225,16 +247,15 @@ class _ViewMoreState extends State<ViewMore> {
                       child: Text(
                         " Boxoffice : ${data?.boxOffice}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w700),
                       )),
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       RatingBar.builder(
                         initialRating: double.parse("  ${data?.imdbRating}"),
-                        minRating: 1,
+                        minRating: 1,unratedColor: Colors.white,
                         itemSize: 25,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
@@ -248,12 +269,15 @@ class _ViewMoreState extends State<ViewMore> {
                           print(rating);
                         },
                       ),
-                      Text(
-                        " IMDB Rating : ${data?.imdbRating}",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20),
+                      Align(
+                        alignment: Alignment(-0.8, 0),
+                        child: Text(
+                          " IMDB Rating : ${data?.imdbRating}",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20),
+                        ),
                       ),
                     ],
                   ),
@@ -262,7 +286,7 @@ class _ViewMoreState extends State<ViewMore> {
                       child: Text(
                         " MetaScore : ${data?.metascore}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w700),
                       )),
@@ -271,7 +295,7 @@ class _ViewMoreState extends State<ViewMore> {
                       child: Text(
                         " Production : ${data?.production}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
                             fontSize: 20),
                       )),
@@ -280,7 +304,7 @@ class _ViewMoreState extends State<ViewMore> {
                       child: Text(
                         " Website : ${data?.website}",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w700),
                       ))
@@ -290,7 +314,7 @@ class _ViewMoreState extends State<ViewMore> {
           } else {
             return Center(
               child: CircularProgressIndicator(
-                color: Colors.purple,
+                color: Colors.white,
                 backgroundColor: Colors.purpleAccent,
               ),
             );

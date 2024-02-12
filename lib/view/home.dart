@@ -18,6 +18,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String sModel = "animal";
+  String value1 = "";
 
   @override
   void initState() {
@@ -28,14 +29,18 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // SearchProvider sp = Provider.of<SearchProvider>(context, listen: false);
-    // MovieProvider mp = Provider.of<MovieProvider>(context, listen: false);
     return Scaffold(
+      backgroundColor: Colors.black.withOpacity(0.7),
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Image.asset("assets/box.png"),
+        ),
         title: Text(
           "Movie Box",
           style: TextStyle(
-              color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
         ),
         actions: [
           IconButton(
@@ -61,9 +66,18 @@ class _HomeState extends State<Home> {
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Not Found"),
-                      Text("${snapshot.error}"),
+                      Center(child: Image.asset("assets/retry.png")),
+                      Text(
+                        "Not Found",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        "${snapshot.error.runtimeType}",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ],
                   );
                 } else if (snapshot.hasData) {
@@ -79,36 +93,41 @@ class _HomeState extends State<Home> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 18.0),
                                     child: TextFormField(
-                                      onFieldSubmitted: (value) {
+                                      style: TextStyle(color: Colors.white),
+                                      onChanged: (value) {
                                         value2.searchApi(value);
                                       },
                                       decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              borderSide: BorderSide(
-                                                  color: Colors.black12)),
-                                          hintText: "Search Movies or Title",
-                                          enabled: true,
-                                          focusColor: Colors.blue,
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          suffixIconColor: Colors.black,
-                                          suffixIcon: IconButton(
-                                            onPressed: () {
-                                              value.hide();
-                                            },
-                                            icon: Icon(Icons.cancel),
-                                          )),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          borderSide:
+                                              BorderSide(color: Colors.white),
+                                        ),
+                                        hintText: "Search Movies or Title",
+                                        enabled: true,
+                                        hintStyle:
+                                            TextStyle(color: Colors.white),
+                                        focusColor: Colors.white,
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.white,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        suffixIconColor: Colors.white,
+                                        suffixIcon: IconButton(
+                                          onPressed: () {
+                                            value.hide();
+                                          },
+                                          icon: Icon(Icons.cancel),
+                                        ),
+                                      ),
                                     ),
                                   )
                                 : Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       TextButton(
                                           onPressed: () {
@@ -116,20 +135,70 @@ class _HomeState extends State<Home> {
                                           },
                                           child: Text(
                                             "Search Movie or Title",
-                                            style:
-                                                TextStyle(color: Colors.black,fontSize: 25),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 25),
                                           )),
+                                      // value.isPage
+                                      //     ? SizedBox(
+                                      //         width: MediaQuery.sizeOf(context)
+                                      //                 .width /
+                                      //             1.8,
+                                      //         child: Padding(
+                                      //           padding:
+                                      //               const EdgeInsets.symmetric(
+                                      //                   horizontal: 38.0),
+                                      //           child: TextFormField(
+                                      //             onFieldSubmitted: (value) {
+                                      //               value2.searchPage(value1,value);
+                                      //             },
+                                      //             decoration: InputDecoration(
+                                      //                 border: OutlineInputBorder(
+                                      //                     borderRadius:
+                                      //                     BorderRadius.circular(20),
+                                      //                     borderSide: BorderSide(
+                                      //                         color: Colors.black12)),
+                                      //                 hintText: "Search page",
+                                      //                 enabled: true,
+                                      //                 focusColor: Colors.blue,
+                                      //                 focusedBorder: OutlineInputBorder(
+                                      //                     borderSide: BorderSide(
+                                      //                       color: Colors.black,
+                                      //                     ),
+                                      //                     borderRadius:
+                                      //                     BorderRadius.circular(20)),
+                                      //                 suffixIconColor: Colors.black,
+                                      //                 suffixIcon: IconButton(
+                                      //                   onPressed: () {
+                                      //                     value.pPage();
+                                      //                   },
+                                      //                   icon: Icon(Icons.cancel),
+                                      //                 )),
+                                      //           ),
+                                      //         ),
+                                      //       )
+                                      //     : TextButton(
+                                      //         onPressed: () {
+                                      //           value.nPage();
+                                      //         },
+                                      //         child: Text(
+                                      //           "Search Movie or Title",
+                                      //           style: TextStyle(
+                                      //               color: Colors.black,
+                                      //               fontSize: 25),
+                                      //         )),
                                       IconButton(
                                         onPressed: () {
                                           value.show();
                                         },
                                         icon: Icon(
                                           CupertinoIcons.search,
-                                          color: Colors.black,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ],
                                   ),
+
                             SizedBox(
                               height: MediaQuery.sizeOf(context).height / 30,
                             ),
@@ -187,6 +256,7 @@ class _HomeState extends State<Home> {
                                                   child: IconButton(
                                                       onPressed: () {
                                                         value.likeMovie(dat);
+
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
@@ -207,6 +277,7 @@ class _HomeState extends State<Home> {
                                                                                 Colors.white),
                                                                       ),
                                                                     )));
+                                                        value.likeIndex(index);
                                                       },
                                                       icon: Icon(
                                                         (index == value.index)
@@ -233,7 +304,11 @@ class _HomeState extends State<Home> {
                     },
                   );
                 } else {
-                  return SizedBox.shrink();
+                  return Center(
+                    child: CircularProgressIndicator(
+                        color: Colors.purpleAccent,
+                        backgroundColor: Colors.purple),
+                  );
                 }
               },
             ),

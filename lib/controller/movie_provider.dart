@@ -8,6 +8,7 @@ class MovieProvider extends ChangeNotifier {
   int index = 0;
   int? intVat;
   bool isShow = false;
+  bool isPage = false;
   List<String> likeList = preferences.getStringList("movie") ?? [];
 
   void changeIndex(int index) {
@@ -23,7 +24,7 @@ class MovieProvider extends ChangeNotifier {
 
   void likeMovie(String? movie) async {
     likeList.add(movie ?? "");
-    final   SharedPreferences preferences = await SharedPreferences.getInstance();
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setStringList("movie", likeList);
     notifyListeners();
   }
@@ -42,6 +43,16 @@ class MovieProvider extends ChangeNotifier {
 
   void hide() {
     isShow = false;
+    notifyListeners();
+  }
+
+  void nPage() {
+    isPage = true;
+    notifyListeners();
+  }
+
+  void pPage() {
+    isPage = false;
     notifyListeners();
   }
 }

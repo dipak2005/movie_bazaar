@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/controller/movie_provider.dart';
 import 'package:movie_app/controller/search_provider.dart';
+import 'package:movie_app/view/detailpage.dart';
 import 'package:movie_app/view/home.dart';
 import 'package:movie_app/view/likepage.dart';
 import 'package:movie_app/view/splash_screen.dart';
+import 'package:movie_app/view/view.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -47,6 +49,8 @@ class _MyAppState extends State<MyApp> {
         routes: {
           "/": (context) => Splash(),
           "Home": (context) => Home(),
+          "DetailPage":(context) => DetailPage(),
+          "ViewMore":(context) => ViewMore(),
           "LikePage": (context) => LikePage(),
         },
       ),
