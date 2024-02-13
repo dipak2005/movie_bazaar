@@ -129,16 +129,19 @@ class _HomeState extends State<Home> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      TextButton(
-                                          onPressed: () {
-                                            value.show();
-                                          },
-                                          child: Text(
-                                            "Search Movie or Title",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 25),
-                                          )),
+                                      Hero(
+                                        tag: "show",
+                                        child: TextButton(
+                                            onPressed: () {
+                                              value.show();
+                                            },
+                                            child: Text(
+                                              "Search Movie or Title",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 25),
+                                            )),
+                                      ),
                                       // value.isPage
                                       //     ? SizedBox(
                                       //         width: MediaQuery.sizeOf(context)
@@ -187,13 +190,16 @@ class _HomeState extends State<Home> {
                                       //               color: Colors.black,
                                       //               fontSize: 25),
                                       //         )),
-                                      IconButton(
-                                        onPressed: () {
-                                          value.show();
-                                        },
-                                        icon: Icon(
-                                          CupertinoIcons.search,
-                                          color: Colors.white,
+                                      Hero(
+                                        tag: value.isShow,
+                                        child: IconButton(
+                                          onPressed: () {
+                                            value.show();
+                                          },
+                                          icon: Icon(
+                                            CupertinoIcons.search,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -244,11 +250,14 @@ class _HomeState extends State<Home> {
                                                         BorderRadius.circular(
                                                             20),
                                                   ),
-                                                  child: Image.network(
-                                                    "${sData?.poster}",
-                                                    fit: BoxFit.cover,
-                                                    height: 200,
-                                                    width: 200,
+                                                  child: Hero(
+                                                    tag: index,
+                                                    child: Image.network(
+                                                      "${sData?.poster}",
+                                                      fit: BoxFit.cover,
+                                                      height: 200,
+                                                      width: 200,
+                                                    ),
                                                   )),
                                               Positioned(
                                                   bottom: 0,
@@ -280,10 +289,11 @@ class _HomeState extends State<Home> {
                                                         value.likeIndex(index);
                                                       },
                                                       icon: Icon(
-                                                        (index == value.index)
-                                                            ? CupertinoIcons
-                                                                .heart_fill
-                                                            : CupertinoIcons
+                                                        // (index == value.index)
+                                                        //     ? CupertinoIcons
+                                                        //         .heart_fill
+                                                        //     :
+                                                        CupertinoIcons
                                                                 .heart,
                                                         color: Colors.red,
                                                       )))

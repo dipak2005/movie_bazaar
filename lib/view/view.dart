@@ -11,8 +11,9 @@ import '../model/search_model.dart';
 
 class ViewMore extends StatefulWidget {
   final String? id;
+  final int? index;
 
-  const ViewMore({super.key, this.id});
+  const ViewMore({super.key, this.id,this.index});
 
   @override
   State<ViewMore> createState() => _ViewMoreState();
@@ -63,9 +64,15 @@ class _ViewMoreState extends State<ViewMore> {
                           offset: Offset(0.9, 0.9),
                         )
                       ], borderRadius: BorderRadius.circular(10)),
-                      child: Image.network(
-                        "${data?.poster}",
-                        fit: BoxFit.cover,
+                      child: Hero(
+                        tag: "image",
+                        placeholderBuilder: (context, heroSize, child) {
+                          return child;
+                        },
+                        child: Image.network(
+                          "${data?.poster}",
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -216,7 +223,8 @@ class _ViewMoreState extends State<ViewMore> {
                     children: [
                       RatingBar.builder(
                         initialRating: double.parse("  ${data?.imdbRating}"),
-                        minRating: 1,unratedColor: Colors.white,
+                        minRating: 1,
+                        unratedColor: Colors.white,
                         itemSize: 25,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
@@ -255,7 +263,8 @@ class _ViewMoreState extends State<ViewMore> {
                     children: [
                       RatingBar.builder(
                         initialRating: double.parse("  ${data?.imdbRating}"),
-                        minRating: 1,unratedColor: Colors.white,
+                        minRating: 1,
+                        unratedColor: Colors.white,
                         itemSize: 25,
                         direction: Axis.horizontal,
                         allowHalfRating: true,

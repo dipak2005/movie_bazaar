@@ -55,8 +55,11 @@ class _DetailPageState extends State<DetailPage> {
                   color: Colors.white,
                 ),
                 margin: EdgeInsets.symmetric(horizontal: 30),
-                child:
-                    Image.network("${widget.search?.poster}", fit: BoxFit.cover),
+                child: Hero(
+                  tag: widget.index!,
+                  child: Image.network("${widget.search?.poster}",
+                      fit: BoxFit.cover),
+                ),
               ),
             ),
             SizedBox(
@@ -65,42 +68,55 @@ class _DetailPageState extends State<DetailPage> {
             Text(
               " Movie name : ${widget.search?.title}",
               style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.w700, fontSize: 30),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 30),
             ),
             Text(
               " Releasing Year : ${widget.search?.year}",
               style: TextStyle(
-                  fontWeight: FontWeight.w500, fontSize: 17, color: Colors.white),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
+                  color: Colors.white),
             ),
             Text(
               " Type : ${widget.search?.type}",
               style: TextStyle(
-                  fontWeight: FontWeight.w500, fontSize: 15, color: Colors.white),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15,
+                  color: Colors.white),
             ),
             SizedBox(
               height: MediaQuery.sizeOf(context).height / 20,
             ),
-            ElevatedButton(
-              style: ButtonStyle(
-                elevation: MaterialStatePropertyAll(2),
-                backgroundColor: MaterialStatePropertyAll(Colors.orange),
-                shape: MaterialStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
+            Hero(
+              tag: "image",
+              transitionOnUserGestures: true,
+              placeholderBuilder: (context, heroSize, child) {
+                return  child;
+              },
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  elevation: MaterialStatePropertyAll(2),
+                  backgroundColor: MaterialStatePropertyAll(Colors.orange),
+                  shape: MaterialStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
                     ),
                   ),
                 ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ViewMore(id: widget.search?.imdbId, index: widget.index),
+                    ),
+                  );
+                },
+                child: Text("View More", style: TextStyle(color: Colors.white),),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ViewMore(id: widget.search?.imdbId),
-                  ),
-                );
-              },
-              child: Text("View More", style: TextStyle(color: Colors.white)),
             )
           ],
         ),
