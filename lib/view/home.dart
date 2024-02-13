@@ -43,14 +43,17 @@ class _HomeState extends State<Home> {
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "LikePage");
-            },
-            icon: Icon(
-              CupertinoIcons.heart_fill,
-              color: Colors.red,
-              size: 30,
+          Hero(
+            tag: "like",
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "LikePage");
+              },
+              icon: Icon(
+                CupertinoIcons.heart_fill,
+                color: Colors.red,
+                size: 30,
+              ),
             ),
           )
         ],
@@ -116,11 +119,14 @@ class _HomeState extends State<Home> {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         suffixIconColor: Colors.white,
-                                        suffixIcon: IconButton(
-                                          onPressed: () {
-                                            value.hide();
-                                          },
-                                          icon: Icon(Icons.cancel),
+                                        suffixIcon: Hero(
+                                          tag: "search",
+                                          child: IconButton(
+                                            onPressed: () {
+                                              value.hide();
+                                            },
+                                            icon: Icon(Icons.cancel),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -129,19 +135,16 @@ class _HomeState extends State<Home> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Hero(
-                                        tag: "show",
-                                        child: TextButton(
-                                            onPressed: () {
-                                              value.show();
-                                            },
-                                            child: Text(
-                                              "Search Movie or Title",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 25),
-                                            )),
-                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            value.show();
+                                          },
+                                          child: Text(
+                                            "Search Movie or Title",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 25),
+                                          )),
                                       // value.isPage
                                       //     ? SizedBox(
                                       //         width: MediaQuery.sizeOf(context)
@@ -191,7 +194,7 @@ class _HomeState extends State<Home> {
                                       //               fontSize: 25),
                                       //         )),
                                       Hero(
-                                        tag: value.isShow,
+                                        tag: "search",
                                         child: IconButton(
                                           onPressed: () {
                                             value.show();

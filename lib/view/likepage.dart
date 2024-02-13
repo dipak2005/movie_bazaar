@@ -17,21 +17,24 @@ class LikePage extends StatefulWidget {
 class _LikePageState extends State<LikePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
+    return Scaffold(backgroundColor: Colors.black,
+        appBar: AppBar(backgroundColor: Colors.transparent,
           title: Text(
             "Like Page",
             style: TextStyle(
-                color: Colors.black, fontSize: 25, fontWeight: FontWeight.w700),
+                color: Colors.white, fontSize: 25, fontWeight: FontWeight.w700),
           ),
           centerTitle: true,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
+          leading: Hero(
+            tag: "movie",
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -51,22 +54,25 @@ class _LikePageState extends State<LikePage> {
                           ),
                         ),
                       ),
-                      Text("Not Like Movies !!! "),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                            shape: MaterialStatePropertyAll(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                      Text("Not Like Movies !!! ",style: TextStyle(color: Colors.white),),
+                      Hero(
+                        tag: "like",
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                              shape: MaterialStatePropertyAll(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                               ),
-                            ),
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.red)),
-                        onPressed: () {
-                          Navigator.pushNamed(context, "Home");
-                        },
-                        child: Text(
-                          "Like Movies",
-                          style: TextStyle(color: Colors.white),
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.red)),
+                          onPressed: () {
+                            Navigator.pushNamed(context, "Home");
+                          },
+                          child: Text(
+                            "Like Movies",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       )
                     ],
